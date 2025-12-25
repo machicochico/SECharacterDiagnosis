@@ -189,25 +189,20 @@ function validateAnswers(ans) {
 }
 
 function setResultUI(r) {
-   
-   document.getElementById("nickname").textContent = r.nickname;
+  document.getElementById("nickname").textContent = r.nickname;
   document.getElementById("charName").textContent = `（${r.charName}）`;
   document.getElementById("thinkType").textContent = r.thinkType;
   document.getElementById("actType").textContent = r.actType;
   document.getElementById("comType").textContent = r.comType;
   document.getElementById("desc").textContent = r.desc;
-  
-  /*
-  document.getElementById("nickname").textContent = r.nickname;
-  // 画像反映
+
+  // 画像反映（CHAR_ASSETS を使用）
   const imgEl = document.getElementById("charImg");
-  const path = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
-  imgEl.src = path;
-  imgEl.alt = r.nickname;
-  */
-  const img = document.getElementById("charImg");
-  img.src = CHARACTER_IMAGES[result.characterName];
-  img.alt = result.characterName;
+  if (imgEl) {
+    const path = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
+    imgEl.src = path;
+    imgEl.alt = r.nickname;
+  }
 }
 
 function buildCopyText(name, r) {
