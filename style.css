@@ -40,3 +40,13 @@ h1 { margin:0 0 6px; font-size: 28px; }
 @media (max-width:700px){
   .char-img { width: 92px; height: 92px; }
 }
+.char-img {
+  width: 120px;
+  height: 120px;
+  image-rendering: pixelated;      /* ドットをドットのまま拡大 */
+  image-rendering: crisp-edges;    /* ブラウザ差分吸収 */
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+}
