@@ -1,11 +1,11 @@
 const CHAR_ASSETS = {
-  "ロジカルアナリスト": "./assets/chars/png64/logical-analyst.png",
-  "職人エンジニア": "./assets/chars/png64/craftsman-engineer.png",
-  "アイデア職人": "./assets/chars/png64/idea-crafter.png",
-  "ビジョンリーダー": "./assets/chars/png64/vision-leader.png",
-  "現場ファイター": "./assets/chars/png64/field-fighter.png",
+  "ロジカルアナリスト": "./assets/chars/png64/system-architect.png",
+  "職人エンジニア": "./assets/chars/png64/core-engineer.png",
+  "アイデア職人": "./assets/chars/png64/solution-designer.png",
+  "ビジョンリーダー": "./assets/chars/png64/tech-lead.png",
+  "現場ファイター": "./assets/chars/png64/field-engineer.png",
   "現場指揮官": "./assets/chars/png64/field-commander.png",
-  "バランスタイプ": "./assets/chars/png64/balance.png"
+  "バランスタイプ": "./assets/chars/png64/generalist.png"
 };
 
 const QUESTIONS = [
