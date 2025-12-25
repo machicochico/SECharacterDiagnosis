@@ -7,6 +7,17 @@ const CHAR_ASSETS = {
   "現場指揮官": "./assets/chars/png64/field-commander.png",
   "バランスタイプ": "./assets/chars/png64/generalist.png"
 };
+// X: 0=深掘り ←→ 100=推進
+// Y: 0=構造/設計 ←→ 100=現場/運用
+const CHAR_POS = {
+  "ロジカルアナリスト": { x: 25, y: 20 },
+  "職人エンジニア":     { x: 30, y: 55 },
+  "アイデア職人":       { x: 70, y: 30 },
+  "ビジョンリーダー":   { x: 80, y: 15 },
+  "現場ファイター":     { x: 55, y: 85 },
+  "現場指揮官":         { x: 85, y: 75 },
+  "バランスタイプ":     { x: 55, y: 55 }
+};
 
 const QUESTIONS = [
   {
@@ -208,6 +219,30 @@ function setResultUI(r) {
     imgEl.src = path;
     imgEl.alt = r.nickname;
   }
+  
+  // --- マトリクスにプロット ---
+  const pin = document.getElementById("pin");
+  const pinImg = document.getElementById("pinImg");
+  const pinLabel = document.getElementById("pinLabel");
+  const matrix = document.getElementById("matrix");
+
+  if (pin && pinImg && pinLabel && matrix) {
+    const pos = CHAR_POS[r.nickname] || CHAR_POS["バランスタイプ"];
+
+    // matrix内の%座標に変換
+    pin.style.left = `${pos.x}%`;
+    pin.style.top  = `${pos.y}%`;
+
+    // アイコン
+    pinImg.src = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
+    pinImg.alt = r.nickname;
+
+    // ラベル
+    pinLabel.textContent = r.nickname;
+
+    pin.classList.remove("hidden");
+  }
+
 }
 
 
