@@ -31,9 +31,12 @@
 
     <section id="result" class="card hidden" aria-live="polite">
       <h2>診断結果</h2>
-      <div class="result-main">
-        <div class="badge" id="nickname"></div>
-        <div class="meta" id="charName"></div>
+      <div class="result-hero">
+        <img id="charImg" class="char-img" alt="キャラクターイメージ" />
+        <div>
+          <div class="badge" id="nickname"></div>
+          <div class="meta" id="charName"></div>
+        </div>
       </div>
 
       <div class="grid">
@@ -60,7 +63,7 @@
         <button type="button" id="copy" class="btn primary">結果をコピー</button>
         <a class="btn" href="#top" id="again">もう一度</a>
       </div>
-      <p class="note">※結果はブラウザ内で計算され、どこにも送信しません（保存機能を追加しない限り）。</p>
+      <p class="note">※結果はブラウザ内で計算され、どこにも送信しません。</p>
     </section>
   </main>
 
