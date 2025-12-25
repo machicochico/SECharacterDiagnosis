@@ -1,32 +1,11 @@
 const CHAR_ASSETS = {
-  "ロジカルアナリスト": {
-    img: "./assets/chars/logical-analyst.svg",
-    alt: "ロジカルアナリストのイメージ"
-  },
-  "職人エンジニア": {
-    img: "./assets/chars/craftsman-engineer.svg",
-    alt: "職人エンジニアのイメージ"
-  },
-  "アイデア職人": {
-    img: "./assets/chars/idea-crafter.svg",
-    alt: "アイデア職人のイメージ"
-  },
-  "ビジョンリーダー": {
-    img: "./assets/chars/vision-leader.svg",
-    alt: "ビジョンリーダーのイメージ"
-  },
-  "現場ファイター": {
-    img: "./assets/chars/field-fighter.svg",
-    alt: "現場ファイターのイメージ"
-  },
-  "現場指揮官": {
-    img: "./assets/chars/field-commander.svg",
-    alt: "現場指揮官のイメージ"
-  },
-  "バランスタイプ": {
-    img: "./assets/chars/balance.svg",
-    alt: "バランスタイプのイメージ"
-  }
+  "ロジカルアナリスト": "./assets/chars/png64/logical-analyst.png",
+  "職人エンジニア": "./assets/chars/png64/craftsman-engineer.png",
+  "アイデア職人": "./assets/chars/png64/idea-crafter.png",
+  "ビジョンリーダー": "./assets/chars/png64/vision-leader.png",
+  "現場ファイター": "./assets/chars/png64/field-fighter.png",
+  "現場指揮官": "./assets/chars/png64/field-commander.png",
+  "バランスタイプ": "./assets/chars/png64/balance.png"
 };
 
 const QUESTIONS = [
@@ -166,7 +145,7 @@ function maxKeyABC(c) {
   return k;
 }
 
-function computeResult(answers) {
+function computeResult(answers) {  
   // 思考（Q1,Q9）
   const thinkKey = maxKeyABC(countABC([answers.q1, answers.q9]));
   const thinkType = thinkKey === "A" ? "ロジック型" : thinkKey === "B" ? "クリエイティブ型" : "現場感覚型";
@@ -210,18 +189,21 @@ function validateAnswers(ans) {
 }
 
 function setResultUI(r) {
-  document.getElementById("nickname").textContent = r.nickname;
+   /*
+   document.getElementById("nickname").textContent = r.nickname;
   document.getElementById("charName").textContent = `（${r.charName}）`;
   document.getElementById("thinkType").textContent = r.thinkType;
   document.getElementById("actType").textContent = r.actType;
   document.getElementById("comType").textContent = r.comType;
   document.getElementById("desc").textContent = r.desc;
+  */
+  document.getElementById("nickname").textContent = r.nickname;
 
-  // 画像
+  // 画像反映
   const imgEl = document.getElementById("charImg");
-  const asset = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
-  imgEl.src = asset.img;
-  imgEl.alt = asset.alt;
+  const path = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
+  imgEl.src = path;
+  imgEl.alt = r.nickname;
 }
 
 function buildCopyText(name, r) {
