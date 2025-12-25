@@ -50,3 +50,68 @@ h1 { margin:0 0 6px; font-size: 28px; }
   border: 1px solid var(--bd);
   border-radius: 14px;
 }
+.matrix{
+  position: relative;
+  height: 260px;
+  border: 1px solid var(--bd);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.axis{
+  position:absolute;
+  color: var(--mut);
+  font-size: 12px;
+  line-height: 1.2;
+  user-select: none;
+}
+
+.axis.y{ left: 10px; top: 10px; }
+.axis.y span{ color: var(--mut); opacity: .9; }
+.axis.x{ left: 10px; bottom: 10px; }
+
+.gridline{ position:absolute; background: var(--bd); opacity: .9; }
+.gridline.v{ top: 0; bottom: 0; width: 1px; }
+.gridline.h{ left: 0; right: 0; height: 1px; }
+.v1{ left: 33.33%; } .v2{ left: 66.66%; }
+.h1{ top: 33.33%; }  .h2{ top: 66.66%; }
+
+.pin{
+  position:absolute;
+  transform: translate(-50%, -50%);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  pointer-events:none;
+}
+
+.pin.hidden{ display:none; }
+
+.pin-img{
+  width: 40px; height: 40px;
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  background: #fff;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.pin-dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  border: 2px solid #111827;
+  background: #fff;
+  margin-left: -6px;
+}
+
+.pin-label{
+  font-weight: 800;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid var(--bd);
+  border-radius: 10px;
+  padding: 6px 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.06);
+}
