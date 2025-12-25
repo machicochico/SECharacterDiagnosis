@@ -1,0 +1,2 @@
+# SECharacterDiagnosis
+質問に答えた自分のキャラクターを知ろう
