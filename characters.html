@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>キャラクター一覧 | SECharacterDiagnosis</title>
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .page-title { margin: 0 0 6px; font-size: 24px; }
+    .page-sub { margin: 0 0 16px; color: var(--mut); }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 900px) { .grid-cards { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px) { .grid-cards { grid-template-columns: 1fr; } }
+
+    .char-card { display: flex; gap: 12px; align-items: center; }
+    .char-icon {
+      width: 72px;
+      height: 72px;
+      border: 1px solid var(--bd);
+      border-radius: 14px;
+      object-fit: contain;
+      background: #fff;
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      flex: 0 0 auto;
+    }
+    .char-name { font-weight: 800; font-size: 18px; margin: 0; }
+    .char-desc { margin: 6px 0 0; color: var(--mut); line-height: 1.6; }
+    .top-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <header class="header">
+      <h1 class="page-title">キャラクター一覧</h1>
+      <p class="page-sub">診断で表示されるキャラクターと説明の一覧です。</p>
+
+      <div class="top-actions">
+        <a class="btn primary" href="./index.html">診断ページへ戻る</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <div id="charGrid" class="grid-cards"></div>
+    </section>
+  </main>
+
+  <script>
+    // app.jsと同じ「キー名（キャラ名）」で合わせてください
+    const CHAR_LIST = [
+      {
+        name: "ロジカルアナリスト",
+        img: "./assets/chars/png64/system-architect.png",
+        desc: "仕様整理・原因分析・品質担保で強い。根拠と整合性を最優先に詰めるタイプ。"
+      },
+      {
+        name: "職人エンジニア",
+        img: "./assets/chars/png64/core-engineer.png",
+        desc: "実装の精度と保守性を引き上げる。黙々と確実に仕上げるタイプ。"
+      },
+      {
+        name: "アイデア職人",
+        img: "./assets/chars/png64/solution-designer.png",
+        desc: "改善案を出して形にする。業務目線・UX目線の提案が得意。"
+      },
+      {
+        name: "ビジョンリーダー",
+        img: "./assets/chars/png64/tech-lead.png",
+        desc: "方向性を決めて推進する。意思決定と優先順位付けが得意。"
+      },
+      {
+        name: "現場ファイター",
+        img: "./assets/chars/png64/field-engineer.png",
+        desc: "障害対応・運用の即応力が高い。現場で手を動かして解決に寄せる。"
+      },
+      {
+        name: "現場指揮官",
+        img: "./assets/chars/png64/field-commander.png",
+        desc: "関係者調整とプロジェクト推進。状況判断と交通整理が得意。"
+      },
+      {
+        name: "バランスタイプ",
+        img: "./assets/chars/png64/generalist.png",
+        desc: "全体の穴埋め役。状況に合わせて柔軟に動ける。"
+      }
+    ];
+
+    function render() {
+      const grid = document.getElementById("charGrid");
+      grid.innerHTML = "";
+      CHAR_LIST.forEach(c => {
+        const card = document.createElement("div");
+        card.className = "card char-card";
+        card.innerHTML = `
+          <img class="char-icon" src="${c.img}" alt="${c.name}">
+          <div>
+            <p class="char-name">${c.name}</p>
+            <p class="char-desc">${c.desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
