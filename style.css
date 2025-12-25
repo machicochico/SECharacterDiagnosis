@@ -57,6 +57,7 @@ h1 { margin:0 0 6px; font-size: 28px; }
   border-radius: 12px;
   background: #fff;
   overflow: hidden;
+  padding: 34px 44px; /* 上下・左右ラベルの分だけ余白 */
 }
 
 .axis{
@@ -169,4 +170,47 @@ h1 { margin:0 0 6px; font-size: 28px; }
   border-radius: 10px;
   padding: 6px 8px;
   box-shadow: 0 1px 6px rgba(0,0,0,.06);
+}
+.edge-label{
+  position: absolute;
+  color: var(--mut);
+  font-size: 12px;
+  user-select: none;
+  opacity: .9;
+  background: rgba(255,255,255,.78);
+  border: 1px solid var(--bd);
+  border-radius: 999px;
+  padding: 6px 10px;
+  white-space: nowrap;
+  z-index: 2;            /* グリッド線より上 */
+}
+
+/* 上下：中央寄せ */
+.edge-label.top{
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.edge-label.bottom{
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 左右：縦書きで省スペース */
+.edge-label.left{
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 10px 8px;
+}
+.edge-label.right{
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 10px 8px;
 }
