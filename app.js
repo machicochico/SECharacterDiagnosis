@@ -1,3 +1,34 @@
+const CHAR_ASSETS = {
+  "ロジカルアナリスト": {
+    img: "./assets/chars/logical-analyst.svg",
+    alt: "ロジカルアナリストのイメージ"
+  },
+  "職人エンジニア": {
+    img: "./assets/chars/craftsman-engineer.svg",
+    alt: "職人エンジニアのイメージ"
+  },
+  "アイデア職人": {
+    img: "./assets/chars/idea-crafter.svg",
+    alt: "アイデア職人のイメージ"
+  },
+  "ビジョンリーダー": {
+    img: "./assets/chars/vision-leader.svg",
+    alt: "ビジョンリーダーのイメージ"
+  },
+  "現場ファイター": {
+    img: "./assets/chars/field-fighter.svg",
+    alt: "現場ファイターのイメージ"
+  },
+  "現場指揮官": {
+    img: "./assets/chars/field-commander.svg",
+    alt: "現場指揮官のイメージ"
+  },
+  "バランスタイプ": {
+    img: "./assets/chars/balance.svg",
+    alt: "バランスタイプのイメージ"
+  }
+};
+
 const QUESTIONS = [
   {
     id: "q1",
@@ -185,6 +216,12 @@ function setResultUI(r) {
   document.getElementById("actType").textContent = r.actType;
   document.getElementById("comType").textContent = r.comType;
   document.getElementById("desc").textContent = r.desc;
+
+  // 画像
+  const imgEl = document.getElementById("charImg");
+  const asset = CHAR_ASSETS[r.nickname] || CHAR_ASSETS["バランスタイプ"];
+  imgEl.src = asset.img;
+  imgEl.alt = asset.alt;
 }
 
 function buildCopyText(name, r) {
