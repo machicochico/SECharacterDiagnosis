@@ -45,12 +45,25 @@
         <a class="btn primary" href="./index.html">診断ページへ戻る</a>
       </div>
     </header>
-
+    <section class="matrix-section">
+      <h2 class="matrix-title">マトリクス（全キャラ）</h2>
+    
+      <div class="matrix-wrap">
+        <div class="axis y">構造・設計重視 ↑<br><span>↓ 現場・運用重視</span></div>
+        <div class="axis x">← 深掘り（専門・集中）　　推進（調整・前進） →</div>
+    
+        <div id="matrixAll" class="matrix">
+          <div class="matrix-grid"></div>
+          <!-- JSがここに点（キャラ）を配置 -->
+        </div>
+      </div>
+    </section>
     <section class="card">
       <div id="charGrid" class="grid-cards"></div>
     </section>
   </main>
 
+  <script defer src="./app.js"></script>
   <script>
     // app.jsと同じ「キー名（キャラ名）」で合わせてください
     const CHAR_LIST = [
