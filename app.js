@@ -111,6 +111,43 @@ const QUESTIONS = [
     ],
   },
 ];
+function renderMatrixPoints(matrixEl, points) {
+  // 既存点を掃除
+  matrixEl.querySelectorAll(".matrix-point").forEach(el => el.remove());
+
+  const clamp = (v) => Math.max(0, Math.min(100, v));
+
+  points.forEach(p => {
+    const a = document.createElement("a");
+    a.className = "matrix-point";
+    a.textContent = p.label;
+
+    // (0..100) を % で配置
+    a.style.left = clamp(p.x) + "%";
+    a.style.top  = clamp(p.y) + "%";
+
+    // 任意：クリックで該当キャラへ（一覧側に各キャラのidがある前提）
+    if (p.href) a.href = p.href;
+
+    matrixEl.appendChild(a);
+  });
+}
+const CHARACTER_POINTS = [
+  { label: "ロジカルアナリスト", x: 25, y: 25, href: "#logical-analyst" },
+  { label: "職人エンジニア",     x: 20, y: 35, href: "#craft-engineer" },
+  { label: "アイデア職人",       x: 35, y: 20, href: "#idea-crafter" },
+  { label: "ビジョンリーダー",   x: 75, y: 20, href: "#vision-leader" },
+  { label: "現場ファイター",     x: 35, y: 80, href: "#field-fighter" },
+  { label: "現場指揮官",         x: 75, y: 75, href: "#field-commander" },
+  { label: "バランスタイプ",     x: 50, y: 50, href: "#balance" },
+];
+document.addEventListener("DOMContentLoaded", () => {
+  const matrixAll = document.getElementById("matrixAll");
+  if (matrixAll) {
+    renderMatrixPoints(matrixAll, CHARACTER_POINTS);
+  }
+});
+
 
 function renderQuestions() {
   const host = document.getElementById("questions");
