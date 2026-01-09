@@ -294,42 +294,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("quiz");
   const error = document.getElementById("error");
   const result = document.getElementById("result");
-  const resetBtn = document.getElementById("reset");
+  const resetBtn = document.getElementById("resetBtn");
   const copyBtn = document.getElementById("copy");
 
-  if (!form || !error || !result) return; // ここで落とさない
+  // form が無ければ何もできないので return
+  if (!form) return;
 
+  // reset は result が無くても動くべきなので、先に登録する
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      console.log("RESET CLICKED");
+      form.reset();
+      renderQuestions();
+
+      if (error) error.textContent = "";
+      if (result) result.classList.add("hidden");
+
+      const pin = document.getElementById("pin");
+      if (pin) pin.classList.add("hidden");
+
+      if (copyBtn) copyBtn.textContent = "結果をコピー";
+    });
+  }
+
+  // 以降、result/error が無い環境でも落ちないように分岐
   form.addEventListener("submit", (ev) => {
     ev.preventDefault();
-    error.textContent = "";
+    if (error) error.textContent = "";
 
     const ans = getAnswers(form);
     if (!validateAnswers(ans)) {
-      error.textContent = "未回答の設問があります。すべて回答してください。";
+      if (error) error.textContent = "未回答の設問があります。すべて回答してください。";
       return;
     }
 
     const r = computeResult(ans);
     setResultUI(r);
-    result.classList.remove("hidden");
-    result.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (result) {
+      result.classList.remove("hidden");
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
-
-  if (resetBtn) {
-    resetBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      form.reset();
-      error.textContent = "";
-      result.classList.add("hidden");
-
-      // マトリクスのピンを使っているならこれも戻す
-      const pin = document.getElementById("pin");
-      if (pin) pin.classList.add("hidden");
-
-      // 「コピーしました」表示を戻す（任意）
-      if (copyBtn) copyBtn.textContent = "結果をコピー";
-    });
-  }
 
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
@@ -338,9 +344,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const ans = getAnswers(form);
       if (!validateAnswers(ans)) {
-        error.textContent = "コピーするには、先に診断してください。";
+        if (error) error.textContent = "コピーするには、先に診断してください。";
         return;
       }
+
       const r = computeResult(ans);
       const text = buildCopyText(name, r);
 
@@ -349,8 +356,9 @@ document.addEventListener("DOMContentLoaded", () => {
         copyBtn.textContent = "コピーしました";
         setTimeout(() => (copyBtn.textContent = "結果をコピー"), 1200);
       } catch {
-        error.textContent = "コピーに失敗しました。ブラウザの権限をご確認ください。";
+        if (error) error.textContent = "コピーに失敗しました。ブラウザの権限をご確認ください。";
       }
     });
   }
 });
+
