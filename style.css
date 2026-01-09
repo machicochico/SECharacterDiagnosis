@@ -214,13 +214,3 @@ h1 { margin:0 0 6px; font-size: 28px; }
   text-orientation: mixed;
   padding: 10px 8px;
 }
-.matrix-wrap { position: relative; max-width: 720px; margin: 16px auto; }
-.matrix { position: relative; aspect-ratio: 1 / 1; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; }
-.matrix-grid { position: absolute; inset: 0; background: linear-gradient(#0000 49%, #eee 50%, #0000 51%),
-                                   linear-gradient(90deg, #0000 49%, #eee 50%, #0000 51%); background-size: 25% 25%; }
-.axis { position: absolute; font-size: 12px; color: #666; }
-.axis.y { left: -6px; top: 8px; transform: translateX(-100%); text-align: right; }
-.axis.x { left: 50%; bottom: -6px; transform: translate(-50%, 100%); white-space: nowrap; }
-
-.matrix-point { position: absolute; transform: translate(-50%, -50%); padding: 6px 8px; border-radius: 999px; border: 1px solid #ccc; background: #fff; font-size: 12px; cursor: pointer; }
-.matrix-point:hover { transform: translate(-50%, -50%) scale(1.02); }
