@@ -313,12 +313,17 @@ document.addEventListener("DOMContentLoaded", () => {
     result.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  resetBtn.addEventListener("click", () => {
+  resetBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     form.reset();
     error.textContent = "";
     result.classList.add("hidden");
   });
-
+  
+  function resetDiagnosis() {
+    // いちばん確実：初期状態に戻す実装が面倒ならリロード
+    window.location.reload();
+  }
   copyBtn.addEventListener("click", async () => {
     const name = (document.getElementById("name").value || "").trim();
     const ans = getAnswers(form);
