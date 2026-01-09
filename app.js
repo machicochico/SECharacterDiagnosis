@@ -297,6 +297,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("reset");
   const copyBtn = document.getElementById("copy");
 
+  if (!form || !error || !result) return; // ここで落とさない
+
   form.addEventListener("submit", (ev) => {
     ev.preventDefault();
     error.textContent = "";
@@ -313,32 +315,42 @@ document.addEventListener("DOMContentLoaded", () => {
     result.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  resetBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    form.reset();
-    error.textContent = "";
-    result.classList.add("hidden");
-  });
-  
-  function resetDiagnosis() {
-    // いちばん確実：初期状態に戻す実装が面倒ならリロード
-    window.location.reload();
+  if (resetBtn) {
+    resetBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      form.reset();
+      error.textContent = "";
+      result.classList.add("hidden");
+
+      // マトリクスのピンを使っているならこれも戻す
+      const pin = document.getElementById("pin");
+      if (pin) pin.classList.add("hidden");
+
+      // 「コピーしました」表示を戻す（任意）
+      if (copyBtn) copyBtn.textContent = "結果をコピー";
+    });
   }
-  copyBtn.addEventListener("click", async () => {
-    const name = (document.getElementById("name").value || "").trim();
-    const ans = getAnswers(form);
-    if (!validateAnswers(ans)) {
-      error.textContent = "コピーするには、先に診断してください。";
-      return;
-    }
-    const r = computeResult(ans);
-    const text = buildCopyText(name, r);
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtn.textContent = "コピーしました";
-      setTimeout(() => (copyBtn.textContent = "結果をコピー"), 1200);
-    } catch {
-      error.textContent = "コピーに失敗しました。ブラウザの権限をご確認ください。";
-    }
-  });
+
+  if (copyBtn) {
+    copyBtn.addEventListener("click", async () => {
+      const nameEl = document.getElementById("name");
+      const name = (nameEl?.value || "").trim();
+
+      const ans = getAnswers(form);
+      if (!validateAnswers(ans)) {
+        error.textContent = "コピーするには、先に診断してください。";
+        return;
+      }
+      const r = computeResult(ans);
+      const text = buildCopyText(name, r);
+
+      try {
+        await navigator.clipboard.writeText(text);
+        copyBtn.textContent = "コピーしました";
+        setTimeout(() => (copyBtn.textContent = "結果をコピー"), 1200);
+      } catch {
+        error.textContent = "コピーに失敗しました。ブラウザの権限をご確認ください。";
+      }
+    });
+  }
 });
