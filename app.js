@@ -162,7 +162,7 @@ function renderQuestions() {
           .map(
             (o) => `
           <label class="opt">
-            <input type="radio" name="${q.id}" value="${o.v}" required />
+            <input type="radio" name="${q.id}" value="${o.v}" />
             ${o.t}
           </label>`
           )
@@ -324,7 +324,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const ans = getAnswers(form);
     if (!validateAnswers(ans)) {
-      if (error) error.textContent = "未回答の設問があります。すべて回答してください。";
+      if (error) {
+        error.textContent = "未回答の設問があります。すべて回答してください。";
+        error.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
       return;
     }
 
