@@ -214,3 +214,10 @@ h1 { margin:0 0 6px; font-size: 28px; }
   text-orientation: mixed;
   padding: 10px 8px;
 }
+/* ボタンの文字サイズを固定してページ差・状態差を消す */
+.btn,
+button {
+  font-size: 16px;      /* ←キャラ一覧のサイズに合わせて変更 */
+  line-height: 1.2;
+  font-family: inherit;
+}
