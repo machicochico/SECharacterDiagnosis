@@ -4,7 +4,7 @@ const CHAR_ASSETS = {
   "アイデア職人": "./assets/chars/png64/solution-designer.png",
   "ビジョンリーダー": "./assets/chars/png64/tech-lead.png",
   "現場ファイター": "./assets/chars/png64/field-engineer.png",
-  "現場指揮官": "./assets/chars/png64/field-commander.png",
+  "現場指揮官": "./assets/chars/png64/project-hub.png",
   "バランスタイプ": "./assets/chars/png64/generalist.png"
 };
 // X: 0=深掘り ←→ 100=推進
